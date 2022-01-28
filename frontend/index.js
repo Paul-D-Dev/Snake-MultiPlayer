@@ -98,9 +98,10 @@ function handleGameOver(data) {
     if (data.winner === playerNumber) {
         alert('You win !');
     } else {
-        alert('You lose ...');
+        alert('You lose ...', reset());
     }
     gameActive = false;
+    reset();
 }
 
 function handleGameCode(gameCode) {
@@ -119,7 +120,7 @@ function handleFullGame() {
 
 function reset() {
     playerNumber = null;
-    gameCodeInput.input = '';
+    gameCodeInput.value = '';
     gameCodeDisplay.innerText = '';
     initialScreen.style.display = 'block';
     gameScreen.style.display = 'none';
