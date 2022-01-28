@@ -4,12 +4,25 @@ const options = {
     }
 }
 const io = require('socket.io')(options);
-const { createGameState, gameLoop } = require('./game');
+const { createGameState, gameLoop, getUpdatedVelocity } = require('./game');
 const { FRAME_RATE } = require('./constants');
 
 io.on('connection', client => {
     console.log('-----user connected-----')
     const state = createGameState();
+    client.on('keydown', handleKeyDown);
+    // Use function inside because we want to have access to client
+    function handleKeyDown(keyCode) {
+        try {
+            keyCode = parseInt(keyCode);
+        } catch (e) {
+            console.error(e);
+            return;
+        }
+
+        const vel = getUpdatedVelocity(keyCode);
+        if (vel) state.player.vel = vel;
+    }
     startGameInterval(client, state);
 });
 

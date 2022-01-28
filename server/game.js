@@ -53,7 +53,7 @@ function gameLoop(state) {
         playerOne.snake.push({ ...playerOne.pos});
         playerOne.pos.x += playerOne.vel.x;
         playerOne.pos.y += playerOne.vel.y;
-        randomFood();
+        randomFood(state);
     }
 
     // Snake moves
@@ -94,7 +94,24 @@ function randomFood(state) {
     state.food = food
 }
 
+function getUpdatedVelocity(keyCode) {
+    switch (keyCode) {
+        case 37: { // left
+            return { x: -1, y: 0}
+        }
+        case 38: { // down
+            return { x: 0, y: -1}
+        }
+        case 39: { // right
+            return { x: 1, y: 0}
+        }
+        case 40: { // up
+            return { x: 0, y: 1}
+        }
+    }
+}
 module.exports = {
     createGameState,
-    gameLoop
+    gameLoop,
+    getUpdatedVelocity
 }
