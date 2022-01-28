@@ -8,6 +8,7 @@ const FOOD_COLOUR = '#e66916';
 const socket = io('http://localhost:3000');
 // connect to events from back end socket
 socket.on('gameState', handleGameState);
+socket.on('gameOver', handleGameOver);
 
 const gameScreen =  getId('gameScreen');
 let canvas, ctx;
@@ -58,4 +59,8 @@ function handleGameState(gameState) {
     }
     gameState = JSON.parse(gameState);
     requestAnimationFrame(() => paintGame(gameState));
+}
+
+function handleGameOver() {
+    alert('Game over');
 }
