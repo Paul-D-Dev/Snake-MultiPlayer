@@ -21,3 +21,21 @@ handle moves from player in real time.
 - CSS3
 - Javascript
 - [Socket.io](https://socket.io/)
+
+
+## Clone project
+    git clone https://github.com/Paul-D-Dev/Snake-MultiPlayer.git
+    cd snake-multiplayer
+
+Open 2 terminals,
+In the first :
+
+    cd server
+    npm i
+    npx nodemon server.js
+
+In the second : 
+
+    cd frontend
+    npx live-sever
+
